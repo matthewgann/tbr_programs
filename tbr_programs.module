@@ -1,0 +1,165 @@
+<?php
+
+function tbr_programs_views_api() {
+   return array(
+      'api' => 3,
+   );
+}
+
+
+function tbr_programs_form_alter(&$form, &$form_state, $form_id) {
+/*
+  if ($form_id == "views_exposed_form" && $form['#id'] == "views-exposed-form-tbr-salary-data-page" or $form['#id'] == "views-exposed-form-tbr-salary-data-history-page") {
+    
+    $form['institution']['#type'] = "select";
+    $form['institution']['#size'] = null;
+    $form['institution']['#options'] = array();
+	$form['institution']['#options'][''] = '';
+	
+	$results = null;
+	$cache_key = "salaries_institutions";
+	$cache = cache_get($cache_key);
+	
+	if ($cache) {
+		//drupal_set_message("Content Type List Loaded from Cache: " . date("Y-m-d H:i:s", $cache->created));
+		$results = $cache->data;
+	}
+	else {
+	   //Set the database to the salaries database
+	   db_set_active('tbr_data_salaries');
+	   
+	   //Get distinct years
+	   $result = db_query('SELECT DISTINCT(institution) FROM salaries ORDER BY institution ASC');
+       $results = $result->fetchAll(); 
+	   cache_set($cache_key, $results, 'cache', CACHE_TEMPORARY);
+	   //drupal_set_message("Content Type List Saved to Cache");
+
+	   //Set the database back to the default drupal database
+	   db_set_active();
+   }
+   
+   foreach ($results as $record) {
+	   //Add the years to the select list array
+	   $form['institution']['#options'][$record->institution] = $record->institution;
+   }
+  }
+  */
+  
+  if ($form_id == "views_exposed_form" && $form['#id'] == "views-exposed-form-programs-available-page") {
+
+	$form['degree']['#type'] = "select";
+	$form['degree']['#size'] = null;
+	$form['degree']['#options'] = array();
+	
+	$results = null;
+	$cache_key = "programs_degree";
+	$cache = cache_get($cache_key);
+	if ($cache) {
+		drupal_set_message("Content Type List Loaded from Cache: " . date("Y-m-d H:i:s", $cache->created));
+		$results = $cache->data;
+	}
+	else {
+	   //Set the database to the salaries database
+	   db_set_active('tbr_data_programs');
+	   
+	   //Get distinct years
+	   $result = db_query('SELECT DISTINCT(degree) FROM programs ORDER BY degree ASC');
+       $results = $result->fetchAll(); 
+	   cache_set($cache_key, $results, 'cache', CACHE_TEMPORARY);
+	   //drupal_set_message("Content Type List Saved to Cache");
+
+	   //Set the database back to the default drupal database
+	   db_set_active();
+   }
+   
+   foreach ($results as $record) {
+	   //Add the years to the select list array
+	   $form['degree']['#options'][$record->degree] = $record->degree;
+   }
+ 
+ 	$form['degree']['#options'][""] = "-- Select --"; 
+
+ 
+  }
+
+  if ($form_id == "views_exposed_form" && $form['#id'] == "views-exposed-form-programs-available-page") {
+
+	$form['institution_name']['#type'] = "select";
+	$form['institution_name']['#size'] = null;
+	$form['institution_name']['#options'] = array();
+	$form['institution_name']['#options'][""] = "-- Select --"; 
+	
+	$form['institution_name']['#options']["Austin Peay"] = "Austin Peay State University";
+	$form['institution_name']['#options']["MTSU"] = "Middle Tennessee State University";
+	$form['institution_name']['#options']["East Tennessee"] = "East Tennessee State University";
+	$form['institution_name']['#options']["Tennessee State"] = "Tennessee State University";
+	$form['institution_name']['#options']["Tennessee Tech"] = "Tennessee Tech University";
+	$form['institution_name']['#options']["Univ of Memphis"] = "University of Memphis";
+	$form['institution_name']['#options']["Chattanooga State"] = "Chattanooga State";
+	$form['institution_name']['#options']["Cleveland State"] = "Cleveland State Community College";
+	$form['institution_name']['#options']["Columbia State"] = "Columbia State Community College";
+	$form['institution_name']['#options']["Dyersburg State"] = "Dyersburg State Community College";
+	$form['institution_name']['#options']["Jackson State"] = "Jackson State Community College";
+	$form['institution_name']['#options']["Motlow State"] = "Motlow State Community College";
+	$form['institution_name']['#options']["Nashville State"] = "Nashville State Community College";
+	$form['institution_name']['#options']["Northeast State"] = "Northeast State Community College";
+	$form['institution_name']['#options']["Pellissippi State"] = "Pellissippi State Community College";
+	$form['institution_name']['#options']["Roane State"] = "Roane State Community College";
+	$form['institution_name']['#options']["Southwest TN"] = "Southwest TN Community College";
+	$form['institution_name']['#options']["Volunteer State"] = "Volunteer State Community College";
+	$form['institution_name']['#options']["Walters State"] = "Walters State Community College";
+		/*
+	
+	$results = null;
+	$cache_key = "programs_institutions";
+	$cache = cache_get($cache_key);
+	
+	
+	
+
+	if ($cache) {
+		drupal_set_message("Content Type List Loaded from Cache: " . date("Y-m-d H:i:s", $cache->created));
+		$results = $cache->data;
+	}
+	else {
+	   //Set the database to the salaries database
+	   db_set_active('tbr_data_programs');
+	   
+	   //Get distinct years
+	   $result = db_query('SELECT DISTINCT(institution_name) FROM programs ORDER BY institution_name ASC');
+       $results = $result->fetchAll(); 
+	   cache_set($cache_key, $results, 'cache', CACHE_TEMPORARY);
+	   //drupal_set_message("Content Type List Saved to Cache");
+
+	   //Set the database back to the default drupal database
+	   db_set_active();
+   }
+   
+   foreach ($results as $record) {
+	   //Add the years to the select list array
+	   $form['institution_name']['#options'][$record->institution_name] = $record->institution_name;
+   }
+   */
+ 
+  }
+  
+  
+  if ($form_id == "views_exposed_form" && $form['#id'] == "views-exposed-form-programs-available-page") {
+
+	$form['level']['#type'] = "select";
+	$form['level']['#size'] = null;
+	$form['level']['#options'] = array();
+	$form['level']['#options'][""] = "-- Select --"; 
+	
+	$form['level']['#options']["C"] = "Certificate";
+	$form['level']['#options']["P"] = "Diploma";
+	$form['level']['#options']["A"] = "Associate Degree";
+	$form['level']['#options']["B"] = "Bachelor's Degree";
+	$form['level']['#options']["M"] = "Master's Degree";
+	$form['level']['#options']["D"] = "Doctoral Degree"; 
+  
+  }
+}
+
+
+

@@ -1,0 +1,10 @@
+name = "TBR Programs Views"
+description = "Exposes Program Database to Views"
+dependencies[] = views
+package = "TBR"
+core = 7.x
+version = "7.x-1.0"
+project = "tbr_programs"
+
+files[] = tbr_programs.module
+files[] = tbr_programs.views.inc
